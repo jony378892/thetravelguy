@@ -12,3 +12,31 @@ export interface TravelData {
   };
   experience: string;
 }
+
+export interface BlogData {
+  id: number;
+  title: string;
+  slug: string;
+  category: string;
+  subcategory: string;
+  publishDate: string;
+  readTime: string;
+  featuredImage: string;
+  excerpt: string;
+  tags: string[];
+  location: {
+    country: string;
+    city: string;
+    coordinates: {
+      lat: number;
+      lng: number;
+    };
+  };
+  content: string;
+  rating: number;
+  views: number;
+  likes: number;
+  comments: number;
+  featured: boolean;
+  seoKeywords: string[];
+}

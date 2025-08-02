@@ -1,4 +1,4 @@
-import CommonTitile from "./CommonTitile";
+import CommonTitile from "./CommonTitle";
 import { travelData } from "@/Data/travelData";
 
 export default function TravelGuide() {

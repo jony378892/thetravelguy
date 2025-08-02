@@ -1,12 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import Home from "./pages/Home";
-import Blog from "./pages/Blog";
-import Category from "./pages/Category";
+import Blogs from "./pages/Blogs";
 import Gallery from "./pages/Gallery";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import RootLayout from "./pages/RootLayout";
 import Destinations from "./pages/Destinations";
-import RootLayout from "./components/RootLayout";
+import Country from "./pages/Country";
+import Blog from "./pages/Blog";
 
 export default function App() {
   return (
@@ -14,9 +15,12 @@ export default function App() {
       <Routes>
         <Route element={<RootLayout />}>
           <Route index path="" element={<Home />} />
-          <Route path="blog" element={<Blog />} />
+          <Route path="blogs" element={<Blogs />} />
+          <Route path="blog/:slug" element={<Blog />} />
           <Route path="destinations" element={<Destinations />} />
-          <Route path="categories" element={<Category />} />
+          <Route path="destination/:country" element={<Country />} />
+
+          <Route path="destinations/:country" element={<Country />} />
           <Route path="gallery" element={<Gallery />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />

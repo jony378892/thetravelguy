@@ -2,6 +2,7 @@ import { Earth, Search, X } from "lucide-react";
 import Sidemenu from "./Sidemenu";
 import NavLinks from "./NavLinks";
 import { useState } from "react";
+import { Link } from "react-router";
 
 export default function Navbar() {
   const [search, setSearch] = useState(false);
@@ -28,9 +29,12 @@ export default function Navbar() {
             <div className="md:hidden">
               <Sidemenu />
             </div>
-            <p className="flex items-center gap-2 font-semibold text-white text-xl">
-              <Earth className="size-5" /> The Travel Guy
-            </p>
+            <Link to="/">
+              {" "}
+              <p className="flex items-center gap-2 font-semibold text-white text-xl">
+                <Earth className="size-5" /> The Travel Guy
+              </p>
+            </Link>
             <NavLinks className="hidden md:flex gap-2 sm:gap-3 lg:gap-5 text-xs lg:text-sm pt-2 text-white/80" />
             <Search className="size-6 cursor-pointer" onClick={handleSearch} />
           </>
