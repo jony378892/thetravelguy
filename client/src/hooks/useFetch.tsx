@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function useFetch<T>(url: string) {
-  const [data, setData] = useState<T>();
+  const [data, setData] = useState<T | undefined>(undefined);
 
   useEffect(() => {
     let isMounted = true;
@@ -10,14 +10,11 @@ export default function useFetch<T>(url: string) {
     const fetchData = async () => {
       try {
         const res = await axios.get(`http://localhost:3000${url}`);
-        if (res) {
+        if (isMounted) {
           setData(res.data);
         }
-
-        return data;
       } catch (error) {
-        console.log(error);
-        throw new Error("Error fetching data");
+        console.error("Error fetching data:", error);
       }
     };
 

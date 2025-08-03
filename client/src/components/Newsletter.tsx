@@ -1,6 +1,3 @@
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-
 export default function Newsletter() {
   return (
     <section className="flex flex-col items-center gap-7 mb-10 p-3">
