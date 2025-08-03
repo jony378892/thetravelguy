@@ -16,7 +16,7 @@ export default function Instagram() {
         <InstagramIcon className="stroke-black/85 size-5 stroke-3" />
         <p>INSTAGRAM</p>
       </div>
-      <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-8">
+      <div className="grid grid-cols-4 sm:grid-cols-8 ">
         {destinations?.map((data) => {
           return (
             <div className="overflow-hidden " key={data.id}>

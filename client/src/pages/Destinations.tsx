@@ -18,7 +18,7 @@ export default function Destinations() {
     } else {
       setDestinations(travelData);
     }
-  }, []);
+  }, [path]);
 
   return (
     <section className="flex flex-col gap-5 items-center custom-width mx-auto mb-10 mt-16 p-3">

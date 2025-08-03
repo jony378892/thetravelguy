@@ -1,17 +1,21 @@
 import CommonTitile from "@/components/CommonTitle";
-import { blogData } from "@/Data/blogData";
+import Error from "@/components/Error";
+import useFetch from "@/hooks/useFetch";
+import type { BlogData } from "@/interfaces/interface";
 import { ChevronsRight } from "lucide-react";
 import { Link } from "react-router";
 
 export default function Blogs() {
-  return (
-    <section className="flex flex-col gap-5 my-20 p-3 custom-width mx-auto">
-      <CommonTitile title="BLOG" />
-      <p className="text-center mb-10">Resent travel blog posts</p>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-x-3 sm:gap-x-5 gap-y-16">
-        {blogData.map((blog) => {
-          return (
-            <div key={blog.id} className="flex flex-col gap-5 items-center">
+  const blogData = useFetch<BlogData[]>("/api/blogs");
+
+  if (blogData) {
+    return (
+      <section className="flex flex-col gap-5 my-20 p-3 custom-width mx-auto">
+        <CommonTitile title="BLOG" />
+        <p className="text-center mb-10">Resent travel blog posts</p>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-3 sm:gap-x-5 gap-y-16">
+          {blogData?.map((blog: BlogData) => (
+            <div key={blog.slug} className="flex flex-col gap-5 items-center">
               <img
                 src={blog.featuredImage}
                 alt={blog.title}
@@ -30,9 +34,11 @@ export default function Blogs() {
                 </button>
               </Link>
             </div>
-          );
-        })}
-      </div>
-    </section>
-  );
+          ))}
+        </div>
+      </section>
+    );
+  }
+
+  return <Error message="Failed to load blog posts. Please try again later." />;
 }

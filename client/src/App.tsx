@@ -8,8 +8,11 @@ import RootLayout from "./pages/RootLayout";
 import Destinations from "./pages/Destinations";
 import Country from "./pages/Country";
 import Blog from "./pages/Blog";
+import axios from "axios";
 
 export default function App() {
+  axios.defaults.baseURL = import.meta.env.BASE_URL;
+
   return (
     <BrowserRouter>
       <Routes>
