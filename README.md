@@ -197,7 +197,7 @@ CLOUDINARY_API_SECRET=your-cloudinary-secret -->
 ### Frontend (.env)
 
 ```env
-VITE_API_URL=http://localhost:5000/api
+VITE_API_URL=http://localhost:5000
 VITE_APP_NAME=Personal Travel Blog
 ```
 
@@ -223,16 +223,12 @@ VITE_APP_NAME=Personal Travel Blog
 4. Push to the branch: `git push origin feature/new-feature`
 5. Submit a pull request
 
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## 👨‍💻 Author
 
-**Your Name**
+**Jony Kanti Das**
 
 - GitHub: [@jony378892](https://github.com/jony378892)
-- Email: your.email@example.com
+- Email: jony378892@gmail.com
 
 ## 🙏 Acknowledgments
 
