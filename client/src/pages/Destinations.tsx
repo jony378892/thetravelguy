@@ -1,24 +1,12 @@
-import { travelData } from "@/Data/travelData";
-import { useEffect, useState } from "react";
-import type { TravelData } from "@/interfaces/interface";
 import { Plane } from "lucide-react";
 import { Link, useLocation } from "react-router";
 import CommonTitle from "@/components/CommonTitle";
+import useFetchDestination from "@/hooks/useFetchDestination";
 
 export default function Destinations() {
-  const [destinations, setDestinations] = useState<TravelData[] | null>(null);
+  const destinations = useFetchDestination();
 
-  const location = useLocation();
-  const path = location.pathname;
-  console.log(path);
-
-  useEffect(() => {
-    if (path === "/") {
-      setDestinations(travelData.slice(0, 9));
-    } else {
-      setDestinations(travelData);
-    }
-  }, [path]);
+  const path = useLocation().pathname;
 
   return (
     <section className="flex flex-col gap-5 items-center custom-width mx-auto mb-10 mt-16 p-3">
@@ -31,7 +19,7 @@ export default function Destinations() {
           return (
             <Link
               to={`/destination/${data.country}`}
-              key={data.id}
+              key={data._id}
               className="flex flex-col gap-4 items-center"
             >
               <img src={data.image} alt={data.title} className="rounded-md" />

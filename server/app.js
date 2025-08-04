@@ -18,7 +18,7 @@ app.use("/api", blogRouter);
 app.use("/api", travelRouter);
 
 app.use("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("No page found");
 });
 
 app.listen(port, () => {

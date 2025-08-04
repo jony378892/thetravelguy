@@ -1,22 +1,13 @@
-import { travelData } from "@/Data/travelData";
-import type { TravelData } from "@/interfaces/interface";
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router";
+import useFetchCountry from "@/hooks/useFetchCountry";
+import { useParams } from "react-router";
 
 export default function Country() {
-  const [data, setData] = useState<TravelData | null>(null);
-  const location = useLocation();
-  const path = location.pathname.split("/")[2];
+  const data = useFetchCountry();
 
-  useEffect(() => {
-    const tempData = travelData.find((d) => d.country === path);
-    if (tempData) {
-      setData(tempData);
-    }
-  }, [path]);
+  const country = useParams().country;
 
   if (!data) {
-    return <p>No data found for country {path}</p>;
+    return <p>No data found for country: {country}</p>;
   }
 
   return (

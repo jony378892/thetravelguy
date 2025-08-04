@@ -1,5 +1,5 @@
 export interface TravelData {
-  id: number;
+  _id: number;
   image: string;
   title: string;
   country: string;
@@ -14,7 +14,7 @@ export interface TravelData {
 }
 
 export interface BlogData {
-  id: number;
+  _id: number;
   title: string;
   slug: string;
   category: string;
