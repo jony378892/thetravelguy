@@ -11,7 +11,7 @@ export default function Country() {
   }
 
   return (
-    <section className="custom-width mx-auto py-20">
+    <section className="custom-width mx-auto py-20 px-3">
       <div className="rounded-2xl overflow-hidden shadow-lg">
         <img
           src={data.image}
@@ -26,12 +26,12 @@ export default function Country() {
 
         <div className="space-y-6 mt-6">
           <div>
-            <h2 className="text-2xl font-semibold text-teal-600">Safety</h2>
+            <h2 className="text-lg font-semibold text-secondary">Safety</h2>
             <p className="text-gray-700 mt-1">{data.description.safety}</p>
           </div>
 
           <div>
-            <h2 className="text-2xl font-semibold text-teal-600">
+            <h2 className="text-lg font-semibold text-secondary">
               Travel Guide
             </h2>
             <p className="text-gray-700 mt-1">
@@ -40,12 +40,12 @@ export default function Country() {
           </div>
 
           <div>
-            <h2 className="text-2xl font-semibold text-teal-600">Local Food</h2>
+            <h2 className="text-lg font-semibold text-secondary">Local Food</h2>
             <p className="text-gray-700 mt-1">{data.description.local_food}</p>
           </div>
 
           <div>
-            <h2 className="text-2xl font-semibold text-teal-600">
+            <h2 className="text-lg font-semibold text-secondary">
               Language Tip
             </h2>
             <p className="text-gray-700 mt-1">
@@ -54,7 +54,7 @@ export default function Country() {
           </div>
 
           <div>
-            <h2 className="text-2xl font-semibold text-teal-600">
+            <h2 className="text-lg font-semibold text-secondary">
               Currency Info
             </h2>
             <p className="text-gray-700 mt-1">
@@ -63,7 +63,7 @@ export default function Country() {
           </div>
 
           <div>
-            <h2 className="text-2xl font-semibold text-teal-600">
+            <h2 className="text-lg font-semibold text-secondary">
               Personal Experience
             </h2>
             <p className="text-gray-700 mt-1 italic">"{data.experience}"</p>

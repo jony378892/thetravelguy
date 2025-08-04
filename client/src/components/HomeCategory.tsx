@@ -1,4 +1,7 @@
 import { Link } from "react-router";
+import image1 from "@/assets/extra1.jpg";
+import image2 from "@/assets/extra2.jpg";
+import image3 from "@/assets/extra3.jpg";
 
 interface Category {
   img: string;
@@ -21,13 +24,9 @@ function Part({ img, text, link }: Category) {
 export default function HomeCategory() {
   return (
     <section className="custom-width mx-auto grid sm:grid-cols-3 gap-3 lg:gap-5 my-16 p-3">
-      <Part link="/blogs" img="/src/assets/extra1.jpg" text="TRAVEL BLOG" />
-      <Part
-        link="/destinations"
-        img="/src/assets/extra2.jpg"
-        text="DESTINATION"
-      />
-      <Part link="/about" img="/src/assets/extra3.jpg" text="ABOUT" />
+      <Part link="/blogs" img={image1} text="TRAVEL BLOG" />
+      <Part link="/destinations" img={image2} text="DESTINATION" />
+      <Part link="/about" img={image3} text="ABOUT" />
     </section>
   );
 }

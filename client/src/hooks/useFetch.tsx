@@ -5,11 +5,13 @@ export default function useFetch<T>(url: string) {
   const [data, setData] = useState<T | undefined>(undefined);
 
   useEffect(() => {
+    const baseURL = import.meta.env.VITE_API_URL;
+
     let isMounted = true;
 
     const fetchData = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000${url}`);
+        const res = await axios.get(baseURL + url);
         if (isMounted) {
           setData(res.data);
         }
