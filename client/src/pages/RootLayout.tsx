@@ -3,10 +3,12 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Instagram from "@/components/Instagram";
 import Newsletter from "@/components/Newsletter";
+import ScrollToTop from "@/components/Scrolltotop";
 
 export default function RootLayout() {
   return (
     <div className="min-h-screen w-full flex flex-col">
+      <ScrollToTop />
       <Navbar />
       <main className="flex-1 w-full">
         <Outlet />
