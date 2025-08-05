@@ -4,7 +4,7 @@ A full-stack web application for documenting and sharing personal travel experie
 
 ## Live Demo
 
-Check out the live version of the project [here](https://thetravelguy.vercel.app/).
+Check out the live version of the project [here](https://thetravelblog.vercel.app/).
 
 ## 🌟 Features
 
