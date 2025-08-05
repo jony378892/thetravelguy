@@ -3,7 +3,15 @@ import useFetch from "@/hooks/useFetch";
 import type { TravelData } from "@/interfaces/interface";
 
 export default function Gallery() {
-  const data = useFetch<TravelData[]>("/api/travels");
+  const { loading, data } = useFetch<TravelData[]>("/api/travels");
+
+  if (loading || !data) {
+    return (
+      <section className="custom-width mx-auto my-20 text-center">
+        <p className="text-lg text-black/70">Loading destinations...</p>
+      </section>
+    );
+  }
 
   return (
     <section className="flex flex-col gap-8 custom-width mx-auto my-24 p-3">

@@ -4,9 +4,16 @@ import CommonTitle from "@/components/CommonTitle";
 import useFetchDestination from "@/hooks/useFetchDestination";
 
 export default function Destinations() {
-  const destinations = useFetchDestination();
-
+  const { destinations, loading } = useFetchDestination();
   const path = useLocation().pathname;
+
+  if (loading || !destinations) {
+    return (
+      <section className="custom-width mx-auto my-20 text-center">
+        <p className="text-lg text-black/70">Loading destinations...</p>
+      </section>
+    );
+  }
 
   return (
     <section className="flex flex-col gap-5 items-center custom-width mx-auto mb-10 mt-16 p-3">

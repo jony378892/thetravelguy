@@ -1,22 +1,17 @@
 import useFetch from "@/hooks/useFetch";
 import type { BlogData } from "@/interfaces/interface";
-import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 export default function Blog() {
-  const [blog, setBlog] = useState<BlogData | null>(null);
+  const { slug } = useParams();
+  const { data: blog, loading } = useFetch<BlogData>(`/api/blog/${slug}`);
 
-  const params = useParams();
-  const slug = params.slug;
-  const tempBlog = useFetch<BlogData>(`/api/blog/${slug}`);
-
-  useEffect(() => {
-    if (tempBlog) {
-      setBlog(tempBlog);
-    }
-  }, [tempBlog]);
-
-  if (!blog) return <div className="text-center py-20">Blog not found.</div>;
+  if (loading || !blog)
+    return (
+      <section className="custom-width mx-auto my-20 text-center">
+        <p className="text-lg text-black/70">Loading blog...</p>
+      </section>
+    );
 
   return (
     <article className="max-w-4xl mx-auto px-4 py-20">

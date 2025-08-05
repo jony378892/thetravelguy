@@ -3,17 +3,17 @@ import axios from "axios";
 
 export default function useFetch<T>(url: string) {
   const [data, setData] = useState<T | undefined>(undefined);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const baseURL = import.meta.env.VITE_API_URL;
 
-    let isMounted = true;
-
     const fetchData = async () => {
       try {
         const res = await axios.get(baseURL + url);
-        if (isMounted) {
+        if (res) {
           setData(res.data);
+          setLoading(false);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -21,11 +21,7 @@ export default function useFetch<T>(url: string) {
     };
 
     fetchData();
-
-    return () => {
-      isMounted = false;
-    };
   }, [url]);
 
-  return data;
+  return { data, loading };
 }

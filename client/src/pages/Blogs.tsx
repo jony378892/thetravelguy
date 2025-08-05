@@ -5,7 +5,15 @@ import { ChevronsRight } from "lucide-react";
 import { Link } from "react-router";
 
 export default function Blogs() {
-  const blogData = useFetch<BlogData[]>("/api/blogs");
+  const { data: blogData, loading } = useFetch<BlogData[]>("/api/blogs");
+
+  if (loading || !blogData) {
+    return (
+      <section className="custom-width mx-auto my-20 text-center">
+        <p className="text-lg text-black/70">Loading blogs...</p>
+      </section>
+    );
+  }
 
   return (
     <section className="flex flex-col gap-5 my-20 p-3 custom-width mx-auto">

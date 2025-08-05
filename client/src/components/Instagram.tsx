@@ -1,17 +1,10 @@
 import useFetchDestination from "@/hooks/useFetchDestination";
-import type { TravelData } from "@/interfaces/interface";
 import { InstagramIcon } from "lucide-react";
-import { useEffect, useState } from "react";
 
 export default function Instagram() {
-  const tempDestinations = useFetchDestination();
-  const [destinations, setDestinations] = useState<TravelData[] | null>(null);
+  const { destinations, loading } = useFetchDestination();
 
-  useEffect(() => {
-    if (tempDestinations) {
-      setDestinations(tempDestinations.slice(17, 25));
-    }
-  }, [tempDestinations]);
+  if (loading || !destinations) return null;
 
   return (
     <section className="flex flex-col gap-5 items-center mb-10">
@@ -19,18 +12,17 @@ export default function Instagram() {
         <InstagramIcon className="stroke-black/85 size-5 stroke-3" />
         <p>INSTAGRAM</p>
       </div>
-      <div className="grid grid-cols-4 sm:grid-cols-8 ">
-        {destinations?.map((data) => {
-          return (
-            <div className="overflow-hidden " key={data._id}>
-              <img
-                src={data.image}
-                alt=""
-                className="aspect-square object-cover object-center hover:scale-105 transition-all duration-500"
-              />
-            </div>
-          );
-        })}
+
+      <div className="grid grid-cols-4 sm:grid-cols-8">
+        {destinations.slice(17, 25).map((data) => (
+          <div className="overflow-hidden" key={data._id}>
+            <img
+              src={data.image}
+              alt=""
+              className="aspect-square object-cover object-center hover:scale-105 transition-all duration-500"
+            />
+          </div>
+        ))}
       </div>
     </section>
   );
