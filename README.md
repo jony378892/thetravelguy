@@ -1,6 +1,10 @@
-# Personal Travel Blog
+## Personal Travel Blog
 
 A full-stack web application for documenting and sharing personal travel experiences. Built with modern technologies to provide a seamless blogging experience with rich media support and responsive design.
+
+## Live Demo
+
+Check out the live version of the project [here](https://thetravelguy.vercel.app/).
 
 ## 🌟 Features
 
