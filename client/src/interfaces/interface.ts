@@ -1,4 +1,4 @@
-export interface TravelData {
+export interface DestinationData {
   _id: number;
   image: string;
   title: string;
@@ -39,4 +39,9 @@ export interface BlogData {
   comments: number;
   featured: boolean;
   seoKeywords: string[];
+}
+
+export interface InstagramImages {
+  _id: string;
+  image: string;
 }

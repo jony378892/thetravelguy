@@ -3,7 +3,8 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 
 import blogRouter from "./routes/blog.route.js";
-import travelRouter from "./routes/travel.route.js";
+import travelRouter from "./routes/destination.route.js";
+import instagramRoute from "./routes/instagram.route.js";
 
 const app = express();
 const port = 3000;
@@ -16,6 +17,7 @@ connectDB();
 
 app.use("/api", blogRouter);
 app.use("/api", travelRouter);
+app.use("/api", instagramRoute);
 
 app.use("/", (req, res) => {
   res.send("No page found");

@@ -1,19 +1,15 @@
 import { Plane } from "lucide-react";
 import { Link, useLocation } from "react-router";
 import CommonTitle from "@/components/CommonTitle";
-import useFetchDestination from "@/hooks/useFetchDestination";
+import useFetch from "@/hooks/useFetch";
+import type { DestinationData } from "@/interfaces/interface";
+import { TravelSkeleton } from "@/components/Skeleton";
+import { Suspense } from "react";
 
 export default function Destinations() {
-  const { destinations, loading } = useFetchDestination();
+  const { data: destinations } =
+    useFetch<DestinationData[]>("/api/destinations");
   const path = useLocation().pathname;
-
-  if (loading || !destinations) {
-    return (
-      <section className="custom-width mx-auto my-20 text-center">
-        <p className="text-lg text-black/70">Loading destinations...</p>
-      </section>
-    );
-  }
 
   return (
     <section className="flex flex-col gap-5 items-center custom-width mx-auto mb-10 mt-16 p-3">
@@ -24,16 +20,18 @@ export default function Destinations() {
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-y-14 mt-8">
         {destinations?.map((data) => {
           return (
-            <Link
-              to={`/destination/${data.country}`}
-              key={data._id}
-              className="flex flex-col gap-4 items-center"
-            >
-              <img src={data.image} alt={data.title} className="rounded-md" />
-              <h3 className="text-center text-xl lg:text-2xl hover:font-semibold hover:text-secondary cursor-pointer">
-                {data.country}
-              </h3>
-            </Link>
+            <Suspense fallback={<TravelSkeleton />} key={data._id}>
+              <Link
+                to={`/destination/${data.country}`}
+                key={data._id}
+                className="flex flex-col gap-4 items-center"
+              >
+                <img src={data.image} alt={data.title} className="rounded-md" />
+                <h3 className="text-center text-xl lg:text-2xl hover:font-semibold hover:text-secondary cursor-pointer">
+                  {data.country}
+                </h3>
+              </Link>
+            </Suspense>
           );
         })}
       </div>

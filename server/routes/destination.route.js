@@ -1,12 +1,12 @@
 import express from "express";
 import {
-  getAllTravel,
+  getAllDestinations,
   getDestination,
-} from "../controllers/travel.controller.js";
+} from "../controllers/destination.controller.js";
 
 const router = express.Router();
 
-router.get("/travels", getAllTravel);
+router.get("/destinations", getAllDestinations);
 router.get("/destination/:country", getDestination);
 
 export default router;

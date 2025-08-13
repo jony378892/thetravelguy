@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
 
-const travelSchema = new mongoose.Schema(
+const DestinationSchema = new mongoose.Schema(
   {
     image: String,
     title: String,
     country: String,
     description: {
       safety: String,
-      travel_guide: String,
+      destination_guide: String,
       local_food: String,
       language_tip: String,
       currency_info: String,
@@ -15,10 +15,12 @@ const travelSchema = new mongoose.Schema(
     experience: String,
   },
   {
-    collection: "travel",
+    collection: "destination",
   }
 );
 
-const Travel = mongoose.models.Travel || mongoose.model("Travel", travelSchema);
+const Destination =
+  mongoose.models.Destination ||
+  mongoose.model("Destination", DestinationSchema);
 
-export default Travel;
+export default Destination;
