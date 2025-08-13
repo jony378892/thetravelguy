@@ -1,17 +1,12 @@
 import useFetchCountry from "@/hooks/useFetchCountry";
-import { useParams } from "react-router";
 
 export default function Country() {
-  const { data, loading } = useFetchCountry();
+  const { data } = useFetchCountry();
 
-  const country = useParams().country;
-
-  if (!data || loading) {
+  if (!data) {
     return (
       <section className="custom-width mx-auto my-20 text-center">
-        <p className="text-lg text-black/70">
-          Loading data for country: {country}...
-        </p>
+        <p className="text-lg text-black/70">No data found</p>
       </section>
     );
   }

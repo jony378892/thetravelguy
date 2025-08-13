@@ -4,12 +4,12 @@ import { useParams } from "react-router";
 
 export default function Blog() {
   const { slug } = useParams();
-  const { data: blog, loading } = useFetch<BlogData>(`/api/blog/${slug}`);
+  const { data: blog } = useFetch<BlogData>(`/api/blog/${slug}`);
 
-  if (loading || !blog)
+  if (!blog)
     return (
       <section className="custom-width mx-auto my-20 text-center">
-        <p className="text-lg text-black/70">Loading blog...</p>
+        <p className="text-lg text-black/70">Something wrong happen</p>
       </section>
     );
 

@@ -1,18 +1,15 @@
 import CommonTitile from "@/components/CommonTitle";
+import Error from "@/components/Error";
 import useFetch from "@/hooks/useFetch";
 import type { BlogData } from "@/interfaces/interface";
 import { ChevronsRight } from "lucide-react";
 import { Link } from "react-router";
 
 export default function Blogs() {
-  const { data: blogData, loading } = useFetch<BlogData[]>("/api/blogs");
+  const { data: blogData } = useFetch<BlogData[]>("/api/blogs");
 
-  if (loading || !blogData) {
-    return (
-      <section className="custom-width mx-auto my-20 text-center">
-        <p className="text-lg text-black/70">Loading blogs...</p>
-      </section>
-    );
+  if (!blogData) {
+    return <Error />;
   }
 
   return (

@@ -1,16 +1,13 @@
 import CommonTitile from "@/components/CommonTitle";
+import Error from "@/components/Error";
 import useFetch from "@/hooks/useFetch";
-import type { TravelData } from "@/interfaces/interface";
+import type { DestinationData } from "@/interfaces/interface";
 
 export default function Gallery() {
-  const { loading, data } = useFetch<TravelData[]>("/api/travels");
+  const { data } = useFetch<DestinationData[]>("/api/travels");
 
-  if (loading || !data) {
-    return (
-      <section className="custom-width mx-auto my-20 text-center">
-        <p className="text-lg text-black/70">Loading destinations...</p>
-      </section>
-    );
+  if (!data) {
+    return <Error />;
   }
 
   return (
