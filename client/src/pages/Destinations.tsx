@@ -3,11 +3,10 @@ import { Link, useLocation } from "react-router";
 import CommonTitle from "@/components/CommonTitle";
 import useFetch from "@/hooks/useFetch";
 import type { DestinationData } from "@/interfaces/interface";
-import { TravelSkeleton } from "@/components/Skeleton";
-import { Suspense } from "react";
+import { TravelSkeleton } from "@/components/TravelSkeleton";
 
 export default function Destinations() {
-  const { data: destinations } =
+  const { data: destinations, loading } =
     useFetch<DestinationData[]>("/api/destinations");
   const path = useLocation().pathname;
 
@@ -17,10 +16,16 @@ export default function Destinations() {
       <p className="text-xl md:text-2xl text-center text-black/70">
         Pick a country and start exploring
       </p>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-y-14 mt-8">
-        {destinations?.map((data) => {
-          return (
-            <Suspense fallback={<TravelSkeleton />} key={data._id}>
+      {!destinations || loading ? (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-y-14 mt-8">
+          {Array.from({ length: 15 }).map((_, index) => (
+            <TravelSkeleton key={index} />
+          ))}
+        </div>
+      ) : (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-y-14 mt-8">
+          {destinations?.map((data) => {
+            return (
               <Link
                 to={`/destination/${data.country}`}
                 key={data._id}
@@ -31,10 +36,10 @@ export default function Destinations() {
                   {data.country}
                 </h3>
               </Link>
-            </Suspense>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      )}
       {path === "/" && (
         <Link to="/destinations">
           <button className="flex items-center px-8 py-5 gap-3 my-10 border border-black  shadow-lg hover:shadow-2xl cursor-pointer">
