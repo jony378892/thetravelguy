@@ -1,14 +1,29 @@
-import useFetchCountry from "@/hooks/useFetchCountry";
+import Error from "@/components/Error";
+import { api } from "@/lib/utils";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router";
 
 export default function Country() {
-  const { data } = useFetchCountry();
+  const { country } = useParams();
 
-  if (!data) {
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["country"],
+    queryFn: async () => {
+      const data = await api.get(`/api/destination/${country}`);
+      return data.data;
+    },
+  });
+
+  if (isLoading) {
     return (
       <section className="custom-width mx-auto my-20 text-center">
         <p className="text-lg text-black/70">No data found</p>
       </section>
     );
+  }
+
+  if (error) {
+    return <Error />;
   }
 
   return (

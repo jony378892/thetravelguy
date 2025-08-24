@@ -1,13 +1,20 @@
 import { Plane } from "lucide-react";
 import { Link, useLocation } from "react-router";
 import CommonTitle from "@/components/CommonTitle";
-import useFetch from "@/hooks/useFetch";
 import type { DestinationData } from "@/interfaces/interface";
 import { TravelSkeleton } from "@/components/TravelSkeleton";
+import { useQuery } from "@tanstack/react-query";
+import { api } from "@/lib/utils";
 
 export default function Destinations() {
-  const { data: destinations, loading } =
-    useFetch<DestinationData[]>("/api/destinations");
+  const { data: destinations, isLoading } = useQuery<DestinationData[]>({
+    queryKey: ["travelData"],
+    queryFn: async () => {
+      const data = await api.get("/api/destinations");
+      return data.data;
+    },
+  });
+
   const path = useLocation().pathname;
 
   return (
@@ -16,7 +23,7 @@ export default function Destinations() {
       <p className="text-xl md:text-2xl text-center text-black/70">
         Pick a country and start exploring
       </p>
-      {!destinations || loading ? (
+      {isLoading ? (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-y-14 mt-8">
           {Array.from({ length: 15 }).map((_, index) => (
             <TravelSkeleton key={index} />

@@ -1,17 +1,31 @@
-import useFetch from "@/hooks/useFetch";
 import type { BlogData } from "@/interfaces/interface";
+import { api } from "@/lib/utils";
+import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
 
 export default function Blog() {
   const { slug } = useParams();
-  const { data: blog } = useFetch<BlogData>(`/api/blog/${slug}`);
 
-  if (!blog)
+  const {
+    data: blog,
+    isLoading,
+    error,
+  } = useQuery<BlogData>({
+    queryKey: ["country"],
+    queryFn: async () => {
+      const data = await api.get(`/api/blog/${slug}`);
+      return data.data;
+    },
+  });
+
+  if (!blog || error)
     return (
       <section className="custom-width mx-auto my-20 text-center">
         <p className="text-lg text-black/70">Something wrong happen</p>
       </section>
     );
+
+  if (isLoading) <p className="text-center">Loading....</p>;
 
   return (
     <article className="max-w-4xl mx-auto px-4 py-20">

@@ -1,9 +1,16 @@
-import useFetch from "@/hooks/useFetch";
 import type { InstagramImages } from "@/interfaces/interface";
+import { api } from "@/lib/utils";
+import { useQuery } from "@tanstack/react-query";
 import { InstagramIcon } from "lucide-react";
 
 export default function Instagram() {
-  const { data: images } = useFetch<InstagramImages[]>("/api/instagram");
+  const { data: images } = useQuery<InstagramImages[]>({
+    queryKey: ["instagram"],
+    queryFn: async () => {
+      const data = await api.get(`/api/instagram`);
+      return data.data;
+    },
+  });
 
   return (
     <section className="flex flex-col gap-5 items-center mb-10">

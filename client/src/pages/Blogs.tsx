@@ -1,12 +1,19 @@
 import CommonTitile from "@/components/CommonTitle";
 import Error from "@/components/Error";
-import useFetch from "@/hooks/useFetch";
 import type { BlogData } from "@/interfaces/interface";
+import { api } from "@/lib/utils";
+import { useQuery } from "@tanstack/react-query";
 import { ChevronsRight } from "lucide-react";
 import { Link } from "react-router";
 
 export default function Blogs() {
-  const { data: blogData } = useFetch<BlogData[]>("/api/blogs");
+  const { data: blogData } = useQuery<BlogData[]>({
+    queryKey: ["blogs"],
+    queryFn: async () => {
+      const data = await api.get(`/api/blogs`);
+      return data.data;
+    },
+  });
 
   if (!blogData) {
     return <Error />;
