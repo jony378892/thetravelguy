@@ -1,3 +1,4 @@
+import Loading from "@/components/Loading";
 import type { BlogData } from "@/interfaces/interface";
 import { api } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
@@ -25,7 +26,7 @@ export default function Blog() {
       </section>
     );
 
-  if (isLoading) <p className="text-center">Loading....</p>;
+  if (isLoading) <Loading />;
 
   return (
     <article className="max-w-4xl mx-auto px-4 py-20">

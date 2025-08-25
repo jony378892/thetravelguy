@@ -1,4 +1,5 @@
 import Error from "@/components/Error";
+import Loading from "@/components/Loading";
 import { api } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
@@ -15,11 +16,7 @@ export default function Country() {
   });
 
   if (isLoading) {
-    return (
-      <section className="custom-width mx-auto my-20 text-center">
-        <p className="text-lg text-black/70">No data found</p>
-      </section>
-    );
+    return <Loading />;
   }
 
   if (error) {

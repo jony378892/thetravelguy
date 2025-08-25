@@ -2,9 +2,9 @@ import { Plane } from "lucide-react";
 import { Link, useLocation } from "react-router";
 import CommonTitle from "@/components/CommonTitle";
 import type { DestinationData } from "@/interfaces/interface";
-import { TravelSkeleton } from "@/components/TravelSkeleton";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/utils";
+import { TravelSkeleton } from "@/components/TravelSkeleton";
 
 export default function Destinations() {
   const { data: destinations, isLoading } = useQuery<DestinationData[]>({
@@ -25,13 +25,13 @@ export default function Destinations() {
       </p>
       {isLoading ? (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-y-14 mt-8">
-          {Array.from({ length: 15 }).map((_, index) => (
+          {Array.from({ length: 10 }).map((_, index) => (
             <TravelSkeleton key={index} />
           ))}
         </div>
       ) : (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-y-14 mt-8">
-          {destinations?.map((data) => {
+          {destinations?.slice(0, 10).map((data) => {
             return (
               <Link
                 to={`/destination/${data.country}`}

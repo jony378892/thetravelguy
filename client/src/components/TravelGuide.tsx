@@ -22,7 +22,7 @@ export default function TravelGuide() {
       </p>
       {isLoading ? (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-y-14 mt-8">
-          {Array.from({ length: 15 }).map((_, index) => (
+          {Array.from({ length: 10 }).map((_, index) => (
             <TravelSkeleton key={index} />
           ))}
         </div>

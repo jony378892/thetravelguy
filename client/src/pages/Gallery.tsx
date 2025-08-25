@@ -1,5 +1,6 @@
 import CommonTitile from "@/components/CommonTitle";
 import Error from "@/components/Error";
+import Loading from "@/components/Loading";
 import type { DestinationData } from "@/interfaces/interface";
 import { api } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
@@ -14,7 +15,7 @@ export default function Gallery() {
   });
 
   if (isLoading) {
-    return <p className="text-center">Loading....</p>;
+    return <Loading />;
   }
 
   if (error) {
